@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Visualizer</title>
+  </head>
+  <body>
+    <h1>Stock Visualizer</h1>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <form method="post">
+      <label for="symbol">Enter stock symbol:</label>
+      <input type="text" name="symbol" required />
+      <br />
+      <label for="time_series"
+        >Enter time series (1: Intraday, 2: Daily Adjusted, 3: Weekly, 4:
+        Monthly):</label
+      >
+      <input type="text" name="time_series" required />
+      <br />
+      <label for="start_date">Enter start date (YYYY-MM-DD):</label>
+      <input type="text" name="start_date" required />
+      <br />
+      <label for="end_date">Enter end date (YYYY-MM-DD):</label>
+      <input type="text" name="end_date" required />
+      <br />
+      <label for="chart_type">Choose a graph type (1: line, 2: bar):</label>
+      <input type="text" name="chart_type" required />
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+    {% if plot_url %}
+    <img
+      src="data:image/png;base64,{{ plot_url }}"
+      alt="plot of stock prices"
+    />
+    {% endif %}
+  </body>
+</html>
